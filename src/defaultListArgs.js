@@ -18,7 +18,7 @@ module.exports = function () {
     },
     include: {
       type: JSONType,
-      description: "A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/"
+      description: 'A JSON object conforming the the shape specified in http://docs.sequelizejs.com/en/latest/docs/querying/'
     },
   };
 

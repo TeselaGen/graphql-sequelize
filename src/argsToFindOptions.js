@@ -35,7 +35,7 @@ export default function argsToFindOptions(args, targetAttributes) {
       if (key === 'include' && args[key]) {
         // setup where
         // args.include: [ { model: 'User', where: { name: [Object] } } ]
-        result.include = _.map(args.include, function(includeObj) {
+        result.include = _.map(args.include, function (includeObj) {
           // console.log('includeObj:', includeObj)
           includeObj.where =
             includeObj.where && replaceWhereOperators(includeObj.where);
