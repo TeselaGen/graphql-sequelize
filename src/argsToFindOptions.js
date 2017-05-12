@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {replaceWhereOperators} from './replaceWhereOperators';
 
 export default function argsToFindOptions(args, targetAttributes) {
@@ -29,6 +30,17 @@ export default function argsToFindOptions(args, targetAttributes) {
       if (key === 'where' && args[key]) {
         // setup where
         result.where = replaceWhereOperators(args.where);
+      }
+
+      if (key === 'include' && args[key]) {
+        // setup where
+        // args.include: [ { model: 'User', where: { name: [Object] } } ]
+        result.include = _.map(args.include, function(includeObj) {
+          // console.log('includeObj:', includeObj)
+          includeObj.where =
+            includeObj.where && replaceWhereOperators(includeObj.where);
+          return includeObj;
+        });
       }
 
     });
