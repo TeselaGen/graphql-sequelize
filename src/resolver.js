@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { GraphQLList } from 'graphql';
 import argsToFindOptions from './argsToFindOptions';
 import { isConnection, handleConnection, nodeType } from './relay';
@@ -68,6 +69,21 @@ function resolverFactory(target, options) {
             return result;
           });
         }
+      }
+
+      if (findOptions.include) {
+        _.each(findOptions.include, function (includeObj) {
+          if (!includeObj.model) return
+          var association =
+            model.associations[
+              includeObj.model.toLowerCase
+              ? includeObj.model.toLowerCase()
+              : includeObj.model.name
+            ];
+          includeObj.model = association.target;
+          includeObj.as = association.as;
+        });
+        findOptions.include = _.toArray(findOptions.include);
       }
 
       return model[list ? 'findAll' : 'findOne'](findOptions);
