@@ -1,5 +1,5 @@
 {
-  "name": "graphql-sequelize-teselagen",
+  "name": "graphql-sequelize",
   "version": "5.3.3",
   "description": "GraphQL & Relay for MySQL & Postgres via Sequelize",
   "main": "lib/index.js",
