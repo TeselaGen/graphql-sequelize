@@ -73,7 +73,7 @@ function resolverFactory(target, options) {
 
       if (findOptions.include) {
         _.each(findOptions.include, function (includeObj) {
-          if (!includeObj.model) return
+          if (!includeObj.model) return;
           var association =
             model.associations[
               includeObj.model.toLowerCase
