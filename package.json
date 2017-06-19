@@ -1,5 +1,5 @@
 {
-  "name": "graphql-sequelize",
+  "name": "graphql-sequelize-teselagen",
   "version": "5.3.3",
   "description": "GraphQL & Relay for MySQL & Postgres via Sequelize",
   "main": "lib/index.js",
@@ -7,7 +7,8 @@
     "mocha": "--require scripts/mocha-bootload"
   },
   "scripts": {
-    "prepublish": "npm run check && npm run build",
+    "//prepublish": "npm run check && npm run build",
+    "prepublish": "npm run build",
     "check": "npm run lint && npm run test:unit",
     "lint": "eslint src",
     "build": "rm -rf lib/* && babel src --ignore test --out-dir lib",
@@ -22,24 +23,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mickhansen/graphql-sequelize.git"
+    "url": "https://github.com/teselagen/graphql-sequelize.git"
   },
   "keywords": [
     "graphql",
     "sequelize"
   ],
-  "author": "Mick Hansen <maker@mhansen.io>",
+  "author": "teselagen",
   "contributors": [
     {
       "name": "graphql-sequelize community",
-      "url": "https://github.com/mickhansen/graphql-sequelize/graphs/contributors"
+      "url": "https://github.com/teselagen/graphql-sequelize/graphs/contributors"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mickhansen/graphql-sequelize/issues"
+    "url": "https://github.com/teselagen/graphql-sequelize/issues"
   },
-  "homepage": "https://github.com/mickhansen/graphql-sequelize",
+  "homepage": "https://github.com/teselagen/graphql-sequelize",
   "dependencies": {
     "dataloader-sequelize": "^1.4.5",
     "invariant": "2.2.1",
