@@ -3,6 +3,7 @@ import { GraphQLList } from 'graphql';
 import argsToFindOptions from './argsToFindOptions';
 import { isConnection, handleConnection, nodeType } from './relay';
 import invariant from 'assert';
+import camelCase from 'lodash/camelCase';
 import Promise from 'bluebird';
 // import dataLoaderSequelize from 'dataloader-sequelize';
 
@@ -76,8 +77,8 @@ function resolverFactory(target, options) {
           if (!includeObj.model) return;
           var association =
             model.associations[
-              includeObj.model.toLowerCase
-              ? includeObj.model.toLowerCase()
+              typeof includeObj.model === 'string'
+              ? camelCase(includeObj.model)
               : includeObj.model.name
             ];
           includeObj.model = association.target;
