@@ -73,18 +73,7 @@ function resolverFactory(target, options) {
       }
 
       if (findOptions.include) {
-        _.each(findOptions.include, function (includeObj) {
-          if (!includeObj.model) return;
-          var association =
-            model.associations[
-              typeof includeObj.model === 'string'
-              ? camelCase(includeObj.model)
-              : includeObj.model.name
-            ];
-          includeObj.model = association.target;
-          includeObj.as = association.as;
-        });
-        findOptions.include = _.toArray(findOptions.include);
+        buildInclude(findOptions.include, model);
       }
 
       return model[list ? 'findAll' : 'findOne'](findOptions);
@@ -97,3 +86,21 @@ function resolverFactory(target, options) {
 }
 
 module.exports = resolverFactory;
+
+function buildInclude(passedInclude, model) {
+  _.each(passedInclude, function (includeObj) {
+    if (!includeObj.model) return;
+    var association =
+      model.associations[
+        typeof includeObj.model === 'string'
+        ? camelCase(includeObj.model)
+        : includeObj.model.name
+      ];
+    includeObj.model = association.target;
+    includeObj.as = association.as;
+    if (includeObj.include) {
+      buildInclude(includeObj.include, association.target);
+    }
+  });
+  passedInclude = _.toArray(passedInclude);
+}
